@@ -4,76 +4,94 @@ import re
 with open("ultimate_scrap.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
-output = []
+# Prepare containers for each category
+symptoms_data = []
+home_care_data = []
+first_aid_data = []
+prognosis_data = []
+alt_names_data = []
+advice_data = []
+
 for entry in data:
     if "id" in entry and "title" in entry and "sections" in entry:
-        disease = entry["title"]
-        symptoms = []
+        eid = entry["id"]
+        title = entry["title"]
         sections = entry["sections"]
-        # Extract alternative names from the correct section
-        alternative_names = []
+        # Symptoms
+        if "Symptoms" in sections:
+            s = sections["Symptoms"]
+            symptoms_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
+            })
+        # Home Care
+        if "Home Care" in sections:
+            s = sections["Home Care"]
+            home_care_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
+            })
+        # First Aid (sometimes called 'First Aid', sometimes 'What to Expect at the Emergency Room')
+        if "First Aid" in sections:
+            s = sections["First Aid"]
+            first_aid_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
+            })
+        if "What to Expect at the Emergency Room" in sections:
+            s = sections["What to Expect at the Emergency Room"]
+            first_aid_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
+            })
+        # Prognosis
+        if "Outlook (Prognosis)" in sections:
+            s = sections["Outlook (Prognosis)"]
+            prognosis_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
+            })
+        # Alternative Names
         if "Alternative Names" in sections:
-            alt_section = sections["Alternative Names"]
-            if "paragraphs" in alt_section and alt_section["paragraphs"]:
-                for p in alt_section["paragraphs"]:
-                    # Split by semicolon and strip whitespace
-                    alternative_names += [name.strip() for name in p.split(';') if name.strip()]
-        if "Symptoms" in sections:
-            s = sections["Symptoms"]
-            # Always include all list items
-            if "lists" in s and any(s["lists"]):
-                for l in s["lists"]:
-                    symptoms += l
-                # Filter out paragraphs that are just headers
-                if "paragraphs" in s:
-                    for p in s["paragraphs"]:
-                        if not re.search(r'include[s]?:$', p.strip(), re.IGNORECASE):
-                            symptoms.append(p)
-            elif "paragraphs" in s:
-                symptoms += s["paragraphs"]
-        # Only add if symptoms found
-        if symptoms:
-            output.append({
-                "id": entry["id"],
-                "disease": disease,
-                "symptoms": symptoms,
-                "alternative_names": alternative_names
+            s = sections["Alternative Names"]
+            alt_names_data.append({
+                "id": eid,
+                "title": title,
+                "paragraphs": s.get("paragraphs", []),
+                "lists": s.get("lists", [])
             })
-
-with open("symptoms_vs_disease.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, indent=2, ensure_ascii=False)
-
-paragraphs_output = []
-for entry in data:
-    if "id" in entry and "title" in entry and "sections" in entry:
-        entry_paragraphs = []
-        sections = entry["sections"]
-        for section in sections.values():
-            if "paragraphs" in section and section["paragraphs"]:
-                entry_paragraphs.extend(section["paragraphs"])
-        if entry_paragraphs:
-            paragraphs_output.append({
-                "id": entry["id"],
-                "title": entry["title"],
-                "paragraphs": entry_paragraphs
-            })
-
-with open("all_entry_paragraphs.json", "w", encoding="utf-8") as f:
-    json.dump(paragraphs_output, f, indent=2, ensure_ascii=False)
-
-# Extract only the paragraphs from the Symptoms section for each entry
-symptoms_paragraphs_output = []
-for entry in data:
-    if "id" in entry and "title" in entry and "sections" in entry:
-        sections = entry["sections"]
-        if "Symptoms" in sections:
-            s = sections["Symptoms"]
-            if "paragraphs" in s and s["paragraphs"]:
-                symptoms_paragraphs_output.append({
-                    "id": entry["id"],
-                    "title": entry["title"],
-                    "symptoms_paragraphs": s["paragraphs"]
+        # General advice (collect from 'Before Calling Emergency', 'Poison Control', etc.)
+        for advice_section in ["Before Calling Emergency", "Poison Control"]:
+            if advice_section in sections:
+                s = sections[advice_section]
+                advice_data.append({
+                    "id": eid,
+                    "title": title,
+                    "section": advice_section,
+                    "paragraphs": s.get("paragraphs", []),
+                    "lists": s.get("lists", [])
                 })
 
-with open("symptoms_section_paragraphs.json", "w", encoding="utf-8") as f:
-    json.dump(symptoms_paragraphs_output, f, indent=2, ensure_ascii=False)
+# Save each category to its own file
+with open("symptoms_data.json", "w", encoding="utf-8") as f:
+    json.dump(symptoms_data, f, indent=2, ensure_ascii=False)
+with open("home_care_data.json", "w", encoding="utf-8") as f:
+    json.dump(home_care_data, f, indent=2, ensure_ascii=False)
+with open("first_aid_data.json", "w", encoding="utf-8") as f:
+    json.dump(first_aid_data, f, indent=2, ensure_ascii=False)
+with open("prognosis_data.json", "w", encoding="utf-8") as f:
+    json.dump(prognosis_data, f, indent=2, ensure_ascii=False)
+with open("alt_names_data.json", "w", encoding="utf-8") as f:
+    json.dump(alt_names_data, f, indent=2, ensure_ascii=False)
+with open("advice_data.json", "w", encoding="utf-8") as f:
+    json.dump(advice_data, f, indent=2, ensure_ascii=False)

@@ -48,8 +48,8 @@ def scrape_mayo_disease_page(url):
 # To process multiple URLs, loop over your mayoclinic_links.json and save all results to a file.
 
 if __name__ == "__main__":
-    # Load all links from mayoclinic_links.json
-    with open("mrinmoy/mayoclinic_links.json", "r", encoding="utf-8") as f:
+    # Load only absent disease links
+    with open("mrinmoy/links_absent_from_filtered.json", "r", encoding="utf-8") as f:
         links_data = json.load(f)
     all_results = []
     diag_links = []
@@ -73,13 +73,13 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"  -> Error scraping {url}: {e}")
             failed_records.append({"url": url, "error": str(e)})
-    # Save all results
-    with open("mayoclinic_disease_data.json", "w", encoding="utf-8") as f:
+    # Save all results for absent diseases
+    with open("mayoclinic_disease_data_absent.json", "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)
-    # Save diagnosis links
-    with open("mayoclinic_diagnosis_links.json", "w", encoding="utf-8") as f:
+    # Save diagnosis links for absent diseases
+    with open("mayoclinic_diagnosis_links_absent.json", "w", encoding="utf-8") as f:
         json.dump(diag_links, f, indent=2, ensure_ascii=False)
-    # Save failed records
-    with open("mayoclinic_failed_records.json", "w", encoding="utf-8") as f:
+    # Save failed records for absent diseases
+    with open("mayoclinic_failed_records_absent.json", "w", encoding="utf-8") as f:
         json.dump(failed_records, f, indent=2, ensure_ascii=False)
-    print(f"Saved {len(all_results)} disease entries, {len(diag_links)} diagnosis links, and {len(failed_records)} failed records.")
+    print(f"Saved {len(all_results)} absent disease entries, {len(diag_links)} diagnosis links, and {len(failed_records)} failed records.")

@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://alumniassociation.mayo.edu"
+  },
+  {
+    "url": "/about-mayo-clinic/international-business-collaborations",
+    "error": "Invalid URL '/about-mayo-clinic/international-business-collaborations': No scheme supplied. Perhaps you meant https:///about-mayo-clinic/international-business-collaborations?"
+  },
+  {
+    "url": "/about-mayo-clinic/facilities-and-real-estate",
+    "error": "Invalid URL '/about-mayo-clinic/facilities-and-real-estate': No scheme supplied. Perhaps you meant https:///about-mayo-clinic/facilities-and-real-estate?"
+  },
+  {
+    "url": "/about-mayo-clinic/supplier-information",
+    "error": "Invalid URL '/about-mayo-clinic/supplier-information': No scheme supplied. Perhaps you meant https:///about-mayo-clinic/supplier-information?"
+  },
+  {
+    "url": "https://edlinkplus.mayo.edu/"
+  },
+  {
+    "url": "/about-this-site/advertising-sponsorship-policy",
+    "error": "Invalid URL '/about-this-site/advertising-sponsorship-policy': No scheme supplied. Perhaps you meant https:///about-this-site/advertising-sponsorship-policy?"
+  },
+  {
+    "url": "/about-this-site/terms-conditions-use-policy",
+    "error": "Invalid URL '/about-this-site/terms-conditions-use-policy': No scheme supplied. Perhaps you meant https:///about-this-site/terms-conditions-use-policy?"
+  },
+  {
+    "url": "/about-this-site/privacy-policy",
+    "error": "Invalid URL '/about-this-site/privacy-policy': No scheme supplied. Perhaps you meant https:///about-this-site/privacy-policy?"
+  },
+  {
+    "url": "https://mcforms.mayo.edu/mc5200-mc5299/mc5256-01.pdf"
+  },
+  {
+    "url": "https://mcforms.mayo.edu/mc2500-mc2599/mc2570-61.pdf"
+  },
+  {
+    "url": "/about-this-site/accessibility-statement",
+    "error": "Invalid URL '/about-this-site/accessibility-statement': No scheme supplied. Perhaps you meant https:///about-this-site/accessibility-statement?"
+  },
+  {
+    "url": "/about-this-site/advertising-sponsorship-policy",
+    "error": "Invalid URL '/about-this-site/advertising-sponsorship-policy': No scheme supplied. Perhaps you meant https:///about-this-site/advertising-sponsorship-policy?"
+  },
+  {
+    "url": "/diseases-conditions/index",
+    "error": "Invalid URL '/diseases-conditions/index': No scheme supplied. Perhaps you meant https:///diseases-conditions/index?"
+  },
+  {
+    "url": "/es/diseases-conditions/index",
+    "error": "Invalid URL '/es/diseases-conditions/index': No scheme supplied. Perhaps you meant https:///es/diseases-conditions/index?"
+  },
+  {
+    "url": "/ar/diseases-conditions/index",
+    "error": "Invalid URL '/ar/diseases-conditions/index': No scheme supplied. Perhaps you meant https:///ar/diseases-conditions/index?"
+  },
+  {
+    "url": "/zh-hans/diseases-conditions/index",
+    "error": "Invalid URL '/zh-hans/diseases-conditions/index': No scheme supplied. Perhaps you meant https:///zh-hans/diseases-conditions/index?"
+  }
+]

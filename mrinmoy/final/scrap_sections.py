@@ -6,8 +6,10 @@ import time
 
 INPUT_PATH = 'c:/Users/MRINMOY/DataSetRefinement/mrinmoy/final/mayoclinic_links_with_id_unique_sorted.json'
 MISSED_IDS_PATH = 'c:/Users/MRINMOY/DataSetRefinement/mrinmoy/final/missed_ones.json'
-OUTPUT_PATH = 'c:/Users/MRINMOY/DataSetRefinement/mrinmoy/final/mayoclinic_scraped_sections.json'
+OUTPUT_PATH = 'c:/Users/MRINMOY/DataSetRefinement/mrinmoy/final/mayoclinic_scraped_sections_5_missing.json'
 BATCH_SIZE = 100
+
+TARGET_IDS = {53, 119, 123, 149, 1426}
 
 SECTION_MAP = {
     "Symptoms": "Symptoms",
@@ -18,6 +20,10 @@ SECTION_MAP = {
     "Prevention": "Prevention",
     "Preventions": "Prevention"
 }
+
+FLAT_PROPERTIES = [
+    "Symptoms", "Causes", "When to see a doctor", "Risk factors", "Complications", "Prevention"
+]
 
 # --- Enhanced Section Extraction ---
 def extract_nested_list(ul_tag):
@@ -93,6 +99,69 @@ def extract_sections(soup):
                     break
     return result
 
+def flatten_section(section):
+    if isinstance(section, list) and all(isinstance(x, str) for x in section):
+        return section
+    if isinstance(section, dict):
+        result = []
+        if 'paragraphs' in section and isinstance(section['paragraphs'], list):
+            result.extend([s for s in section['paragraphs'] if isinstance(s, str)])
+        if 'lists' in section and isinstance(section['lists'], list):
+            def flatten_list(lst):
+                flat = []
+                for item in lst:
+                    if isinstance(item, dict):
+                        if 'text' in item:
+                            flat.append(item['text'])
+                        if 'children' in item:
+                            flat.extend(flatten_list(item['children']))
+                    elif isinstance(item, list):
+                        flat.extend(flatten_list(item))
+                    elif isinstance(item, str):
+                        flat.append(item)
+                return flat
+            for l in section['lists']:
+                result.extend(flatten_list(l))
+        return result
+    if isinstance(section, str):
+        return [section]
+    if isinstance(section, list):
+        flat = []
+        for item in section:
+            if isinstance(item, str):
+                flat.append(item)
+            elif isinstance(item, dict):
+                if 'text' in item:
+                    flat.append(item['text'])
+                if 'children' in item:
+                    flat.extend(flatten_section(item['children']))
+        return flat
+    return []
+
+def fallback_extract(soup):
+    # Try to get all <p>, <ul>, <ol> under the main content
+    content = {'Symptoms': [], 'Causes': [], 'When to see a doctor': [], 'Risk factors': [], 'Complications': [], 'Prevention': []}
+    # Try to find the main content area
+    main = soup.find('main') or soup.body
+    if not main:
+        main = soup
+    all_text = []
+    for tag in main.find_all(['p', 'ul', 'ol']):
+        if tag.name == 'p':
+            txt = tag.get_text(strip=True)
+            if txt:
+                all_text.append(txt)
+        elif tag.name in ['ul', 'ol']:
+            for li in tag.find_all('li'):
+                txt = li.get_text(strip=True)
+                if txt:
+                    all_text.append(txt)
+    # Heuristically assign to Symptoms, then Causes, etc.
+    # Just put all in Symptoms if nothing else can be done
+    if all_text:
+        content['Symptoms'] = all_text
+    return content
+
 def save_batch(batch, output_path):
     if os.path.exists(output_path):
         with open(output_path, 'r', encoding='utf-8') as f:
@@ -110,10 +179,7 @@ def save_batch(batch, output_path):
 def main():
     with open(INPUT_PATH, encoding='utf-8') as f:
         all_links = json.load(f)
-    with open(MISSED_IDS_PATH, encoding='utf-8') as f:
-        missed_ids = set(entry['id'] for entry in json.load(f))
-    # Filter only missed entries
-    data = [entry for entry in all_links if entry['id'] in missed_ids]
+    data = [entry for entry in all_links if entry['id'] in TARGET_IDS]
     batch = []
     for idx, entry in enumerate(data):
         id_ = entry.get('id')
@@ -127,20 +193,28 @@ def main():
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')
             sections = extract_sections(soup)
-            out_entry.update(sections)
-            print(f"[DEBUG] Scraped {disease} (id={id_}) with sections: {list(sections.keys())}")
+            # Flatten all required properties
+            for prop in FLAT_PROPERTIES:
+                if prop in sections:
+                    out_entry[prop] = flatten_section(sections[prop])
+                else:
+                    out_entry[prop] = []
+            # If all are empty, try fallback
+            if not any(out_entry[prop] for prop in FLAT_PROPERTIES):
+                fallback = fallback_extract(soup)
+                for prop in FLAT_PROPERTIES:
+                    if not out_entry[prop] and fallback[prop]:
+                        out_entry[prop] = fallback[prop]
+            print(f"[DEBUG] Scraped {disease} (id={id_}) with sections: {[k for k in FLAT_PROPERTIES if out_entry[k]]}")
         except Exception as e:
             print(f"[ERROR] Failed for {disease} (id={id_}): {e}")
             out_entry['error'] = str(e)
         batch.append(out_entry)
-        if len(batch) >= BATCH_SIZE:
-            save_batch(batch, OUTPUT_PATH)
-            print(f"[DEBUG] Saved batch of {BATCH_SIZE} records up to index {idx}")
-            batch = []
-            time.sleep(1)
-    if batch:
-        save_batch(batch, OUTPUT_PATH)
-        print(f"[DEBUG] Saved final batch of {len(batch)} records.")
+    # Sort by id
+    batch.sort(key=lambda x: x.get('id', float('inf')))
+    with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
+        json.dump(batch, f, ensure_ascii=False, indent=2)
+    print(f"[DEBUG] Saved {len(batch)} records to {OUTPUT_PATH} (sorted by id).")
 
 if __name__ == "__main__":
     main()

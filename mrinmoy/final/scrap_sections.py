@@ -175,6 +175,36 @@ def save_batch(batch, output_path):
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
 
+def extract_section_html(soup, aria_label):
+    section = soup.find('section', attrs={'aria-labelledby': aria_label})
+    if not section:
+        return None
+    def parse_element(el):
+        if el.name == 'p':
+            return {'type': 'p', 'text': el.get_text(strip=True)}
+        elif el.name in ['ul', 'ol']:
+            return {'type': el.name, 'items': [parse_element(li) for li in el.find_all('li', recursive=False)]}
+        elif el.name == 'li':
+            # li can have text and children
+            item = {'type': 'li'}
+            text = ''.join([t for t in el.find_all(text=True, recursive=False)]).strip()
+            if text:
+                item['text'] = text
+            children = []
+            for child in el.find_all(['ul', 'ol'], recursive=False):
+                children.append(parse_element(child))
+            if children:
+                item['children'] = children
+            return item
+        return None
+    # Only direct children of section
+    content = []
+    for child in section.find_all(['p', 'ul', 'ol'], recursive=False):
+        parsed = parse_element(child)
+        if parsed:
+            content.append(parsed)
+    return content
+
 # --- Main logic to process only missed IDs ---
 def main():
     with open(INPUT_PATH, encoding='utf-8') as f:
@@ -192,25 +222,15 @@ def main():
             resp = requests.get(href, timeout=15)
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')
-            sections = extract_sections(soup)
-            # Flatten all required properties
-            for prop in FLAT_PROPERTIES:
-                if prop in sections:
-                    out_entry[prop] = flatten_section(sections[prop])
-                else:
-                    out_entry[prop] = []
-            # If all are empty, try fallback
-            if not any(out_entry[prop] for prop in FLAT_PROPERTIES):
-                fallback = fallback_extract(soup)
-                for prop in FLAT_PROPERTIES:
-                    if not out_entry[prop] and fallback[prop]:
-                        out_entry[prop] = fallback[prop]
+            for key in FLAT_PROPERTIES:
+                aria_label = key.lower().replace(' ', '-')
+                section_content = extract_section_html(soup, aria_label)
+                out_entry[key] = section_content if section_content else []
             print(f"[DEBUG] Scraped {disease} (id={id_}) with sections: {[k for k in FLAT_PROPERTIES if out_entry[k]]}")
         except Exception as e:
             print(f"[ERROR] Failed for {disease} (id={id_}): {e}")
             out_entry['error'] = str(e)
         batch.append(out_entry)
-    # Sort by id
     batch.sort(key=lambda x: x.get('id', float('inf')))
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(batch, f, ensure_ascii=False, indent=2)

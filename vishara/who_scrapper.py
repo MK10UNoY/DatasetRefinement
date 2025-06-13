@@ -5,7 +5,7 @@ import json
 import random
 from time import sleep
 
-# ---------- CONFIGURATION ----------
+
 BASE_URL = "https://www.who.int"
 LIST_PAGE = "https://www.who.int/news-room/fact-sheets"
 OUTPUT_DIR = "separated jsons/who_diseases"
@@ -13,14 +13,14 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 }
 
-# ---------- STEP 1: Get all disease links ----------
+
 import json
 
 def get_disease_links():
     with open("separated jsons/who_disease_links.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
-# ---------- STEP 2: Scrape each disease page ----------
+
 def scrape_who_page(url):
     try:
         response = requests.get(url, headers=HEADERS, timeout=10)
@@ -56,7 +56,7 @@ def scrape_who_page(url):
     return content
 
 
-# ---------- STEP 3: Save data to file ----------
+
 def save_disease_data(name, data):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     filepath = os.path.join(OUTPUT_DIR, f"{name}.json")
@@ -64,7 +64,7 @@ def save_disease_data(name, data):
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"[SUCCESS] Saved: {filepath}")
 
-# ---------- MAIN ----------
+
 def main():
     disease_links = get_disease_links()
 

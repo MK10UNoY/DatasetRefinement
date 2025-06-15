@@ -1,0 +1,275 @@
+[
+    {
+        "id": 1,
+        "disease_name": "Acne",
+        "symptoms": "Comedones, Papules, Pustules, Nodules, Cysts, Scarring",
+        "causes": "Cosmetics/topical steroid use, Age of onset around puberty, Recent drug intake, Contact with cutting oils/halogens",
+        "brief_info": "Acne can present with various lesions on the face and/or trunk, early treatment is important to minimize scarring."
+    },
+    {
+        "id": 2,
+        "disease_name": "Rosacea",
+        "symptoms": "Facial redness, Swollen red bumps, Eye problems, Enlarged nose",
+        "causes": "Triggers like sun exposure, Spicy foods, Alcohol, Stress, Hot weather",
+        "brief_info": "Rosacea causes redness and visible blood vessels in the face, may also lead to eye problems and thickening of the skin."
+    },
+    {
+        "id": 3,
+        "disease_name": "Alopecia",
+        "symptoms": "Hair loss, Bald patches, Thinning hair",
+        "causes": "Genetics, Hormonal changes, Medical conditions, Medications, Stress",
+        "brief_info": "Alopecia results in hair loss, which can occur in patches or overall thinning, with various underlying causes."
+    },
+    {
+        "id": 4,
+        "disease_name": "Bacterial skin infections",
+        "symptoms": "Redness, Swelling, Pain, Warmth, Pus-filled lesions",
+        "causes": "Bacteria entering the skin through cuts, scrapes, or other breaks in the skin",
+        "brief_info": "Bacterial skin infections are caused by bacteria entering the skin, leading to symptoms like redness, swelling, and pus-filled lesions."
+    },
+    {
+        "id": 5,
+        "disease_name": "Cutaneous adverse drug reactions",
+        "symptoms": "Rash, Itching, Hives, Swelling, Blisters",
+        "causes": "Reaction to medications, Allergic response to drugs",
+        "brief_info": "Cutaneous adverse drug reactions are skin reactions caused by medications, leading to symptoms like rash, itching, and hives."
+    },
+    {
+        "id": 6,
+        "disease_name": "Dermatophytosis",
+        "symptoms": "Red, itchy, scaly patches, Blisters, Peeling skin",
+        "causes": "Fungal infection of the skin, Direct contact with an infected person or animal",
+        "brief_info": "Dermatophytosis is a fungal skin infection that results in red, itchy patches with peeling skin, commonly transmitted through direct contact."
+    },
+    {
+        "id": 7,
+        "disease_name": "Eczema/Dermatitis",
+        "symptoms": "Dry, red, itchy skin, Inflammation, Rash, Blisters, Crusting",
+        "causes": "Genetics, Allergens, Irritants, Immune system dysfunction",
+        "brief_info": "Eczema/Dermatitis causes inflamed, itchy skin with various symptoms like rash and blisters, often triggered by genetics, allergens, or irritants."
+    },
+    {
+        "id": 8,
+        "disease_name": "Immunobullous dermatoses",
+        "symptoms": "Fluid-filled blisters, Erosions, Crusting, Itching, Pain",
+        "causes": "Autoimmune response, Genetic predisposition, Triggers like drugs or infections",
+        "brief_info": "Immunobullous dermatoses lead to blistering of the skin due to autoimmune reactions, with symptoms like fluid-filled blisters and erosions."
+    },
+    {
+        "id": 9,
+        "disease_name": "Psoriasis",
+        "symptoms": "Red, scaly patches, Silvery scales, Itching, Burning, Swollen joints",
+        "causes": "Immune system dysfunction, Genetics, Triggers like stress or infections",
+        "brief_info": "Psoriasis causes red, scaly patches on the skin with silvery scales, often accompanied by itching and swollen joints, linked to immune system issues."
+    },
+    {
+        "id": 10,
+        "disease_name": "Rationale use of Topical Steroids",
+        "symptoms": "Depends on the condition being treated and the specific steroid used",
+        "causes": "Prescribed for various skin conditions to reduce inflammation and symptoms",
+        "brief_info": "Topical steroids are used to treat skin conditions by reducing inflammation, with specific usage based on the condition and steroid type."
+    },
+    {
+        "id": 11,
+        "disease_name": "Scabies",
+        "symptoms": "Intense itching, Rash, Small red bumps, Scales",
+        "causes": "Infestation by the human itch mite, Close contact with an infected person",
+        "brief_info": "Scabies is caused by a mite infestation, leading to intense itching and a rash with small red bumps and scales, commonly spread through close contact."
+    },
+    {
+        "id": 12,
+        "disease_name": "Urticaria",
+        "symptoms": "Raised, itchy welts, Swelling, Redness, Burning, Stinging",
+        "causes": "Allergies, Infections, Stress, Medications, Food",
+        "brief_info": "Urticaria presents as raised, itchy welts on the skin due to various triggers like allergies, infections, stress, or medications."
+    },
+    {
+        "id": 13,
+        "disease_name": "Varicella and Herpes",
+        "symptoms": "Blisters, Itching, Fatigue, Fever, Headache",
+        "causes": "Varicella-zoster virus (chickenpox), Herpes simplex virus",
+        "brief_info": "Varicella (chickenpox) and Herpes infections lead to symptoms like blisters, itching, fatigue, and fever, caused by specific viruses."
+    },
+    {
+        "id": 14,
+        "disease_name": "Vitiligo",
+        "symptoms": "Loss of skin color, Patchy depigmentation, Premature whitening of hair",
+        "causes": "Autoimmune response, Genetic factors, Triggers like stress or sun exposure",
+        "brief_info": "Vitiligo causes loss of skin color in patches, often accompanied by premature whitening of hair, linked to autoimmune factors and genetic predisposition."
+    },
+    {
+        "id": 16,
+        "disease_name": "Neonatal Hypoglycemia",
+        "symptoms": "Refer with history of delayed cry at birth, abnormal value follow appropriate STW for Neonatal Triage, check vitals and blood glucose",
+        "causes": "Moderate or severe hypoxic-ischemic encephalopathy",
+        "brief_info": "STW prepared by national experts of India for various healthcare levels, based on expert opinions and scientific evidence"
+    },
+    {
+        "id": 17,
+        "disease_name": "Neonatal Jaundice",
+        "symptoms": "Jaundice, transitional stools, minor birth trauma, minor malformations, breastfeeding difficulty, regurgitation",
+        "causes": "Weight < 1800g or > 3.8kg, respiratory distress, severe jaundice, severe pallor, bleeding, major malformation, abdominal distension, irritable/restless, refusal to feed, hypothermia",
+        "brief_info": "Guidelines for Paediatric emergency triage, assessment, and treatment by WHO"
+    },
+    {
+        "id": 18,
+        "disease_name": "Neonatal Seizures",
+        "symptoms": "Maintain TABC, check blood glucose, administer dextrose IV, calcium gluconate IV, phenobarbitone IV",
+        "causes": "Not controlled seizures",
+        "brief_info": "STW on neonatal seizures"
+    },
+    {
+        "id": 19,
+        "disease_name": "Neonatal Sepsis",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 20,
+        "disease_name": "Neonatal Transport",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 21,
+        "disease_name": "Neonatal Triage",
+        "symptoms": "Temperature, heart rate, respiratory rate, oxygen saturation, capillary refill time, blood glucose",
+        "causes": "Moderate or severe hypoxic-ischemic encephalopathy",
+        "brief_info": "STW prepared by national experts of India for various healthcare levels, based on expert opinions and scientific evidence"
+    },
+    {
+        "id": 22,
+        "disease_name": "Post Asphyxial Management of Neonates",
+        "symptoms": "Lethargy/coma or irritability, absent spontaneous movements",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 23,
+        "disease_name": "Breast Cancer",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 24,
+        "disease_name": "Lung Cancer",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 25,
+        "disease_name": "Oral and Lip Cancer",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 26,
+        "disease_name": "Cataract",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 27,
+        "disease_name": "Diabetic Retinopathy",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 28,
+        "disease_name": "Glaucoma",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 29,
+        "disease_name": "Septic arthritis",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 30,
+        "disease_name": "Supracondylar fracture of Humerus in Children",
+        "symptoms": "Cover skin defects with warm saline gauze, maintain hydration, consult surgeon",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 31,
+        "disease_name": "Acute Scrotum",
+        "symptoms": "Not specified in the document",
+        "causes": "Not specified in the document",
+        "brief_info": "Not specified in the document"
+    },
+    {
+        "id": 32,
+        "disease_name": "Constipation",
+        "symptoms": "Decreased frequency of bowel motions, Passage of hard or large stools, Painful bowel motions with difficulty in pushing out",
+        "causes": "Various factors including diet, dehydration, lack of physical activity, certain medications",
+        "brief_info": "Constipation is characterized by infrequent bowel movements and difficulty passing stools. It can be caused by multiple factors and is common in all age groups."
+    },
+    {
+        "id": 33,
+        "disease_name": "Empyema",
+        "symptoms": "Chest pain, Shortness of breath, Cough, Fever, Sweating, Rapid heartbeat",
+        "causes": "Usually results from a complication of pneumonia, Lung infections, Trauma to the chest",
+        "brief_info": "Empyema is a condition where pus collects in the pleural space, often as a complication of pneumonia. It can lead to respiratory distress and requires medical intervention."
+    },
+    {
+        "id": 34,
+        "disease_name": "Hernia in children/ Congenital Hernia",
+        "symptoms": "Visible bulge in the abdomen or groin, Pain or discomfort, Swelling or lump",
+        "causes": "Weakness in the abdominal wall, Increased pressure in the abdomen, Congenital condition",
+        "brief_info": "Hernia in children, also known as congenital hernia, is a condition where an organ or tissue bulges through a weak spot in the abdominal wall. It is common in infants and young children."
+    },
+    {
+        "id": 35,
+        "disease_name": "Undescended Testes",
+        "symptoms": "Absence of one or both testes in the scrotum, Empty scrotum, Smaller than normal scrotum",
+        "causes": "Incomplete descent of the testes during fetal development",
+        "brief_info": "Undescended testes, or cryptorchidism, is a condition where one or both testes fail to move into the scrotum before birth. It requires evaluation and treatment to prevent complications."
+    },
+    {
+        "id": 36,
+        "disease_name": "Infertility",
+        "symptoms": "Difficulty conceiving after a year of regular, unprotected intercourse",
+        "causes": "Various factors including hormonal imbalances, reproductive system issues, age, lifestyle factors",
+        "brief_info": "Infertility is the inability to conceive after a year of trying. It can be caused by multiple factors affecting either partner and may require medical intervention for evaluation and treatment."
+    },
+    {
+        "id": 37,
+        "disease_name": "Female Infertility",
+        "symptoms": "Difficulty conceiving after a year of regular, unprotected intercourse, Irregular menstrual cycles, Hormonal imbalances",
+        "causes": "Issues with ovulation, Fallopian tube blockages, Uterine problems, Age-related factors",
+        "brief_info": "Female infertility refers to the inability to conceive after a year of trying for women. It can be due to various factors affecting the reproductive system and may require medical assistance for diagnosis and treatment."
+    },
+    {
+        "id": 38,
+        "disease_name": "Haemolytic Anaemia",
+        "symptoms": "Fatigue, Weakness, Pale or yellowish skin, Shortness of breath, Dizziness, Rapid heart rate",
+        "causes": "Destruction of red blood cells at an abnormally high rate, Inherited conditions, Autoimmune disorders, Infections",
+        "brief_info": "Haemolytic anemia is a condition where red blood cells are destroyed faster than they can be produced, leading to symptoms like fatigue and shortness of breath. It can be caused by various factors and requires medical management."
+    },
+    {
+        "id": 39,
+        "disease_name": "Epidermolysis bullosa",
+        "symptoms": "Blistering of the skin in response to minor injury or friction, Fragile skin, Thickened skin on palms and soles",
+        "causes": "Genetic mutations affecting proteins that help anchor layers of skin together",
+        "brief_info": "Epidermolysis bullosa is a group of genetic conditions that cause fragile skin prone to blistering. It is caused by mutations affecting proteins that maintain skin integrity and requires specialized care."
+    },
+    {
+        "id": 40,
+        "disease_name": "Congenital syphilis",
+        "symptoms": "Rash, Fever, Swollen liver and spleen, Jaundice, Anemia, Bone deformities, Meningitis",
+        "causes": "Transmission of syphilis from an infected mother to her baby during pregnancy",
+        "brief_info": "Congenital syphilis occurs when a baby is born with syphilis due to transmission from an infected mother. It can lead to serious health issues and requires prompt diagnosis and treatment."
+    }
+]

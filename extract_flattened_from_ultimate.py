@@ -53,6 +53,11 @@ for obj in data:
     if 'sections' in obj and 'Symptoms' in obj['sections']:
         symptoms = flatten_section(obj['sections']['Symptoms'])
     out['symptoms'] = symptoms
+    # Flatten everything in sections['Causes']
+    causes = []
+    if 'sections' in obj and 'Causes' in obj['sections']:
+        causes = flatten_section(obj['sections']['Causes'])
+    out['causes'] = causes
     results.append(out)
 
 with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:

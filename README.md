@@ -32,6 +32,7 @@ outputs/       # Model outputs, logs, and results
 README.md
 requirements.txt
 .gitignore
+LICENSE
 ```
 
 ---
@@ -80,4 +81,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-Specify your license here. 
+This project is licensed under the [MIT License](LICENSE). 

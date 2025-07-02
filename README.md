@@ -1,5 +1,9 @@
 # DataSetRefinement
 
+## Problem Statement
+
+Medical data about diseases and symptoms is scattered across many sources, often in unstructured or inconsistent formats. This makes it hard for researchers, developers, and healthcare professionals to analyze, compare, or use this information for building tools, conducting research, or training machine learning models. There is a need for a unified, clean, and structured dataset that brings together disease and symptom information from trusted sources, making it easy to use for data analysis and AI applications.
+
 ## Project Overview
 
 This project collects, cleans, and organizes medical data about diseases and symptoms from multiple sources. The goal is to create high-quality, structured datasets for research, machine learning, and healthcare applications.
@@ -34,11 +38,11 @@ requirements.txt
 
 ## Key Features
 
-- **Data Extraction:** Scripts to extract disease and symptom data from PDFs, websites, and other sources.
-- **Data Cleaning:** Removes noise and irrelevant words, standardizes and flattens data.
-- **Data Structuring:** Organizes data into clear categories (symptoms, causes, prognosis, etc.).
-- **ML Ready:** Prepares datasets for machine learning, including synthetic data generation and model training scripts.
-- **EDA Friendly:** Cleaned datasets are ready for exploratory data analysis and visualization.
+- **Unified Data Pipeline:** Extracts, cleans, and structures data from PDFs, websites, and CSVs into a single, easy-to-use format.
+- **Noise Reduction:** Removes irrelevant words and standardizes terminology for better analysis.
+- **Category Organization:** Data is organized into clear categories (symptoms, causes, prognosis, etc.) for easier exploration.
+- **ML & EDA Ready:** Datasets are ready for machine learning, exploratory data analysis, and visualization.
+- **Extensible:** Modular scripts make it easy to add new data sources or processing steps.
 
 ---
 

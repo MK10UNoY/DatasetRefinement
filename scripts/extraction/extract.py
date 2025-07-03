@@ -5,7 +5,7 @@ import json
 def extract_text_from_pdf(pdf_path):
     """Extract text from a given PDF file."""
     doc = fitz.open(pdf_path)
-    text = "\n".join(page.get_text() for page in doc)
+    text = "\n".join(page.get_text("text") for page in doc)  # type: ignore
     return text
 
 def extract_disease_info(text):

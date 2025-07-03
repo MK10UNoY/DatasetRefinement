@@ -29,6 +29,8 @@ utils/         # Helper functions and utilities
 
 outputs/       # Model outputs, logs, and results
 
+toolkit/       # Python package and CLI for data extraction, cleaning, and modeling
+
 README.md
 requirements.txt
 .gitignore
@@ -47,21 +49,56 @@ LICENSE
 
 ---
 
-## Getting Started
+## Toolkit Functionality Guide
 
-1. **Install dependencies:**
-   ```
-   pip install -r requirements.txt
-   ```
+The `toolkit/` folder contains a Python package and a modern, interactive CLI for extracting, cleaning, and modeling medical data.
 
-2. **Run extraction and cleaning scripts:**
-   - See `scripts/extraction/` and `scripts/cleaning/` for details.
+### How to Run the Toolkit CLI
 
-3. **Explore the data:**
-   - Use the notebooks in `notebooks/` for EDA and analysis.
+From the project root, run:
+```
+python -m toolkit
+```
 
-4. **Train models:**
-   - Use scripts in `scripts/modeling/` to train and evaluate ML models.
+### Main Menu Options
+- **Extract data**: Extracts structured data from PDFs, JSON, CSV, or websites.
+- **Clean data**: Cleans and flattens extracted data for analysis or modeling.
+- **Train model**: Trains a machine learning model on cleaned data.
+- **Exit**: Exits the toolkit.
+
+### Extraction Options
+- **PDF**: Extracts disease and symptom sections from a PDF file.
+- **JSON**: Flattens and standardizes disease data from a JSON file.
+- **CSV**: (Future) For extracting from CSVs.
+- **Web**:
+  - **Single website link**: Extracts all visible text from a single web page.
+  - **Multiple website links from JSON file**: Extracts all visible text from a list of URLs provided in a JSON file.
+
+### Example Usage
+
+**Extract from PDF:**
+- Select "Extract data" → "PDF"
+- Enter the path to your PDF file
+- Enter an output path (or leave blank for default)
+
+**Extract from Web:**
+- Select "Extract data" → "Web"
+- Choose "Single website link" or "Multiple website links from JSON file"
+- Enter the URL or path to the JSON file with URLs
+- Enter an output path (or leave blank for default)
+
+**Clean Data:**
+- Select "Clean data"
+- Enter the path to your extracted data file (JSON or CSV)
+- Enter an output path (or leave blank for default)
+
+**Train Model:**
+- Select "Train model"
+- Enter the path to your cleaned data file
+
+### Output
+- All outputs are saved in the `output/` folder by default if no path is provided.
+- Output file names are auto-generated based on the input file and action.
 
 ---
 

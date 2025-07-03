@@ -1,6 +1,7 @@
 import fitz  # PyMuPDF
 import re
 import json
+from typing import Dict, Any
 
 def extract_text_from_pdf(pdf_path):
     """Extract text from a given PDF file."""
@@ -11,7 +12,7 @@ def extract_text_from_pdf(pdf_path):
 def extract_disease_info(text):
     """Extract disease-related information from the given text."""
     sections = ["Symptoms", "Causes", "Risk factors", "Complications", "Prevention"]
-    disease_info = {"disease": None}
+    disease_info: Dict[str, Any] = {"disease": None}
 
     lines = text.split("\n")
     current_section = None
